@@ -1,0 +1,22 @@
+# azuline asks AI training crawlers to stay away from this site and the artwork on it.
+# Crawlers that follow robots.txt respect this; it can't stop one that doesn't.
+User-agent: GPTBot
+User-agent: CCBot
+User-agent: Google-Extended
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: cohere-ai
+User-agent: cohere-training-data-crawler
+User-agent: Diffbot
+User-agent: ImagesiftBot
+User-agent: Omgilibot
+User-agent: AI2Bot
+Disallow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://azuline.app/sitemap-index.xml

@@ -1,0 +1,80 @@
+---
+// One artwork with its credit. By default a script picks a random piece before the page is drawn;
+// `fixed` renders that piece directly (used by the social preview card).
+import { ARTWORKS, type Artwork } from '../data/art';
+
+interface Props {
+  fixed?: number;
+}
+const { fixed } = Astro.props;
+const shown: Artwork = ARTWORKS[fixed ?? 0];
+const ratio = (shown.w / shown.h).toFixed(4);
+---
+
+<figure class="art" id="art">
+  <div class="frame">
+    <span class="pic" style={`--ar:${ratio}`}>
+      <span class="art-spk" data-spk="star8 si 1.5 left:-.75 top:-.7; star4 az .7 left:.95 top:-1.15; dot az .28 right:-.55 bottom:4.2"></span>
+      {
+        fixed === undefined ? (
+          <>
+            <img id="art-img" alt="" width={shown.w} height={shown.h} />
+            <noscript>
+              <style>{'#art-img{display:none}'}</style>
+              <img src={`/art/${shown.file}.webp`} alt={shown.alt} width={shown.w} height={shown.h} />
+            </noscript>
+          </>
+        ) : (
+          <img id="art-img" src={`/art/${shown.file}.webp`} alt={shown.alt} width={shown.w} height={shown.h} />
+        )
+      }
+    </span>
+  </div>
+  <figcaption class="credit" id="art-credit">
+    <span class="who"
+      ><a href={shown.source}>{shown.title}</a>, {shown.artist}{shown.date && <>, <span class="nw">{shown.date}</span></>}.</span
+    >
+    <span class="lic">{shown.licenceUrl ? <a href={shown.licenceUrl}>{shown.licence}</a> : shown.licence}</span>
+  </figcaption>
+</figure>
+
+{
+  fixed === undefined && (
+    <script is:inline define:vars={{ artworks: ARTWORKS }}>
+      const p = artworks[Math.floor(Math.random() * artworks.length)];
+      const img = document.getElementById('art-img');
+      img.width = p.w;
+      img.height = p.h;
+      img.alt = p.alt;
+      img.src = `/art/${p.file}.webp`;
+      img.parentNode.style.setProperty('--ar', (p.w / p.h).toFixed(4));
+      const credit = document.getElementById('art-credit');
+      const who = credit.querySelector('.who');
+      const link = document.createElement('a');
+      link.href = p.source;
+      link.textContent = p.title;
+      who.replaceChildren(link, `, ${p.artist}`);
+      if (p.date) {
+        const d = document.createElement('span');
+        d.className = 'nw';
+        d.textContent = p.date;
+        who.append(', ', d);
+      }
+      who.append('.');
+      const lic = credit.querySelector('.lic');
+      if (p.licenceUrl) {
+        const l = document.createElement('a');
+        l.href = p.licenceUrl;
+        l.textContent = p.licence;
+        lic.replaceChildren(l);
+      } else lic.textContent = p.licence;
+    </script>
+  )
+}
+
+<script>
+  import { burst } from '../scripts/sparkle';
+
+  // clicking the artwork throws a few sparkles where you clicked
+  document.getElementById('art-img')?.addEventListener('click', (e) => burst(e.clientX, e.clientY, 9, 60));
+</script>

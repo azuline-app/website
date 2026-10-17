@@ -1,0 +1,31 @@
+---
+// The social preview card. Not linked anywhere; screenshot it at 1200x630 into public/og.png
+// whenever the brand or the headline changes (see README).
+import Artwork from '../components/Artwork.astro';
+import TopBar from '../components/TopBar.astro';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="azuline preview card" noindex>
+  <div class="og-card">
+    <TopBar toggle={false} />
+    <main class="stage">
+      <h1 class="display">
+        <span class="ln">A free,</span>
+        <span class="ln">open&#8209;source</span>
+        <span class="ln"
+          >app for <span data-spk="star8 az .5 right:-.78 top:.06; star4 si .3 right:-1.12 top:.66; dot si .12 right:-.36 top:-.04"
+            >artists.</span
+          ></span
+        >
+      </h1>
+      <Artwork fixed={1} />
+    </main>
+  </div>
+</Base>
+
+<script>
+  import { decorate } from '../scripts/sparkle';
+
+  decorate();
+</script>

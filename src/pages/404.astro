@@ -1,0 +1,24 @@
+---
+import TopBar from '../components/TopBar.astro';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found" noindex>
+  <div class="screen">
+    <TopBar />
+    <main class="stage lost">
+      <div class="copy">
+        <h1 class="display">There's no page here.</h1>
+        <p class="lede">The link may be old, or the address may have a typo.</p>
+        <div class="actions"><a class="btn ink" href="/">Go to the home page</a></div>
+      </div>
+    </main>
+    <footer class="foot"></footer>
+  </div>
+</Base>
+
+<script>
+  import { initInk } from '../scripts/ink';
+
+  initInk();
+</script>
