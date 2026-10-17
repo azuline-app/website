@@ -7,7 +7,9 @@
 
 # azuline.app
 
-The website, built with Astro as a static site for Cloudflare Pages. For now it is one screen: what azuline is,
+The website, built with Astro as a static site on Cloudflare Pages (project `azuline`). Every push to `main` that
+passes the checks is deployed by the `deploy` job in `.github/workflows/ci.yml`; the token lives in the `production`
+environment and can only manage Pages. For now it is one screen: what azuline is,
 that it's in development, links to GitHub and email, and one public-domain or CC BY artwork per visit.
 
 ## Commands
@@ -19,6 +21,7 @@ that it's in development, links to GitHub and email, and one public-domain or CC
 | `bun run build` | Build into `dist/`, then write `dist/_headers` (scripts/headers.ts) |
 | `bun run preview` | Serve `dist/` (without the `_headers` rules) |
 | `bun run check` | Type check (`astro check`) and lint/format check (Biome) |
+| `bun run deploy` | Build and upload `dist/` to Cloudflare Pages by hand (needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`) |
 | `bun run format` | Format with Biome |
 
 ## Link previews
