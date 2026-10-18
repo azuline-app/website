@@ -2,7 +2,8 @@
 export const SITE = {
   name: 'azuline',
   url: 'https://azuline.app',
-  description: 'A free, open-source app for artists, in early development. It will never use generative AI.',
+  description:
+    'A free, open-source app for artists, in early development. No AI will ever make, edit or train on the art in it.',
   github: 'https://github.com/azuline-app',
   x: 'https://x.com/azulineapp',
   xHandle: '@azulineapp',
