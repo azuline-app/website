@@ -1,0 +1,76 @@
+---
+import TopBar from '../components/TopBar.astro';
+import { SITE } from '../data/site';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Privacy · azuline" description="What the azuline browser extension and this website collect, and where it goes.">
+  <div class="screen">
+    <TopBar />
+    <main class="doc">
+      <h1 class="display">Privacy</h1>
+      <p class="lede">Updated 18 October 2026.</p>
+
+      <h2>The browser extension</h2>
+      <p>
+        When you save an image, the extension reads the image address, the page address and title, and the artist's name, post title and
+        licence if the page shows them. It downloads the image from the site that hosts it.
+      </p>
+      <p>
+        The image and these details go only to the azuline app on the same computer, through the address 127.0.0.1. Nothing is sent to us
+        or to anyone else. The extension has no analytics, no ads and no account.
+      </p>
+      <p>
+        The extension keeps a few things in the browser, in storage that only the extension can read: the pairing key from the app, the board you chose, your
+        settings, your last five saves, and images that are waiting for the app to open. Removing the extension deletes all of them.
+      </p>
+      <p>
+        On pixiv, the extension adds pixiv's address as the referrer when it downloads an image, because pixiv's image server refuses
+        requests without one. It doesn't change any other request.
+      </p>
+
+      <h2>This website</h2>
+      <p>
+        azuline.app sets no cookies and has no analytics. It remembers your light or dark choice in your browser's local storage. The site is
+        hosted on Cloudflare Pages, so Cloudflare handles each request, including your IP address, to deliver the page. Their
+        <a href="https://www.cloudflare.com/privacypolicy/">privacy policy</a> covers that part.
+      </p>
+
+      <h2>The desktop app</h2>
+      <p>The app isn't released yet. This page will cover it before the first download goes up.</p>
+
+      <h2>Questions</h2>
+      <p>Write to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    </main>
+    <footer class="foot"></footer>
+  </div>
+</Base>
+
+<style>
+  .doc {
+    width: min(680px, 100%);
+    margin: 0 auto;
+    padding: clamp(40px, 8vh, 96px) 0 64px;
+  }
+  .doc h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+  }
+  .doc .lede {
+    margin-top: 14px;
+  }
+  .doc h2 {
+    margin: 44px 0 0;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .doc p {
+    margin: 14px 0 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .doc a {
+    color: var(--link);
+  }
+</style>
