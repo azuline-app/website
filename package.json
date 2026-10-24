@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.4.0"
+    "astro": "^7.4.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "^0.9.11",
     "@biomejs/biome": "^2.5.15",
-    "typescript": "6",
-    "wrangler": "^4.151.1"
+    "typescript": "7",
+    "wrangler": "^4.151.3"
   }
 }
